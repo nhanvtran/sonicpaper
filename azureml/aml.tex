@@ -1,0 +1,158 @@
+\documentclass[11pt,letterpaper]{article}
+\pdfoutput=1
+\usepackage{jinstpub}
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subfig}
+\usepackage{url}
+\usepackage{bbold}
+\usepackage{slashed}
+ \usepackage{url}
+\usepackage{multirow}
+\usepackage{threeparttable}
+\usepackage{paralist}
+\usepackage{bm}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareRobustCommand{\Sec}[1]{Sec.~\ref{#1}}
+\DeclareRobustCommand{\Secs}[2]{Secs.~\ref{#1} and \ref{#2}}
+\DeclareRobustCommand{\App}[1]{App.~\ref{#1}}
+\DeclareRobustCommand{\Tab}[1]{Table~\ref{#1}}
+\DeclareRobustCommand{\Tabs}[2]{Tables~\ref{#1} and \ref{#2}}
+\DeclareRobustCommand{\Fig}[1]{Fig.~\ref{#1}}
+\DeclareRobustCommand{\Figs}[2]{Figs.~\ref{#1} and \ref{#2}}
+\DeclareRobustCommand{\Figss}[3]{Figs.~\ref{#1}, \ref{#2}, and \ref{#3}}
+\DeclareRobustCommand{\Eq}[1]{Eq.~(\ref{#1})}
+\DeclareRobustCommand{\Eqs}[2]{Eqs.~(\ref{#1}) and (\ref{#2})}
+\DeclareRobustCommand{\EqsOr}[2]{Eqs.~(\ref{#1}) or (\ref{#2})}
+\DeclareRobustCommand{\Ref}[1]{Ref.~\cite{#1}}
+\DeclareRobustCommand{\Refs}[1]{Refs.~\cite{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\para}{\paragraph{}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+
+\newcommand{\ev}{{\text{event}}}
+\newcommand{\mev}{\mathrm{MeV}}
+\newcommand{\gev}{\mathrm{GeV}}
+\newcommand{\tev}{\mathrm{TeV}}
+\newcommand{\MET} {E_T^{{\text{miss}}}}
+\newcommand{\METx}{E_x^{\text{miss}}}
+\newcommand{\METy}{E_y^{\text{miss}}}
+\newcommand{\pt}{p_{\mathrm{T}}}
+\newcommand{\jinall}{\phantom{L}j\in\text{all}\phantom{V}}
+
+\newcommand{\meanf}{\bar{\alpha}^{F}_\text{PU}}
+\newcommand{\meanc}{\bar{\alpha}^{c}_\text{PU}}
+\newcommand{\rmsf}{\sigma^{F}_\text{PU}}
+\newcommand{\rmsc}{\sigma^{C}_\text{PU}}
+
+\newcommand{\ednote}[1]{\textbf{\textcolor{orange}{[#1]}}}
+\newcommand{\hlsfml}{{\tt{hls4ml}}}
+
+\renewcommand{\vec}[1]{\bm{#1}} % ISO complying version?
+\newcommand{\matr}[1]{\bm{#1}}     % ISO complying version
+
+\newcommand{\norm}[1]{\|#1\|}
+
+%Change float fractions
+\renewcommand{\floatpagefraction}{0.75}
+
+\begin{document}
+\title{Demonstration of FPGA-accelerated machine learning inference for computing challenges in physics}
+
+% \author[a]{Burt Holzmann}
+% \author[b]{, Song Han}
+% \author[b]{, Philip Harris}
+% \author[a]{, Sergo Jindariani}
+% \author[c]{, Edward Kreinar}
+% \author[a]{, Benjamin Kreis}
+% \author[d]{, Jennifer Ngadiuba}
+% \author[d]{, Maurizio Pierini}
+% \author[a]{, Ryan Rivera}
+% \author[a]{, Nhan Tran}
+% \author[e]{, Zhenbin Wu}
+
+\affiliation[a]{Fermi National Accelerator Laboratory, Batavia, IL 60510, USA}
+\affiliation[b]{Massachusetts Institute of Technology, Cambridge, MA 02139, USA}
+% \affiliation[c]{HawkEye360, Herndon, VA 20170, USA}
+% \affiliation[d]{CERN, CH-1211 Geneva 23, Switzerland}
+% \affiliation[e]{University of Illinois at Chicago, Chicago, IL 60607, USA}
+
+
+\abstract{
+Resources required for high-throughput computing in large scale particle physics experiments face challenging demands both now and in the future.  
+The growing exploration of machine learning algortihms in paritcle physics offer new solutions to simulation, reconstruction, and analysis.
+We explore the possbility that applications of machine learning simultaneously also solve the mounting computing challenges.
+By accelerating machine learning algorithms on dedicated hardware, we can speed up particle physics tasks with similar and often improved performance.  
+We perform a proof-of-concept study of FPGA (Field Programmable Gate Array) hardware-accelerated machine learning using Project Brainwave by Microsoft Azure to accelerate image classification tasks by a factor of $10^3$ or more over traditional CPU inference.  
+By employing machine learning acceleration as a web service within the experimental software framework of the CMS experiment at the CERN LHC, we demonstrate a heterogeneous compute solution for particle physics experiments that requires minimal modification to the current computing model.
+The image classifications tasks are adapted for jet identification in the CMS experiment and event classification in the Nova neutrino experiment at Fermilab.  
+}
+
+%\preprint{
+\begin{flushright}
+  FERMILAB-PUB-XX-YYY-E 
+\end{flushright}
+%}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% I N T R O D U C T I O N
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\clearpage
+\section{Introduction}
+\label{sec:introduction}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % C O N C E P T
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\clearpage
+\section{ML co-processor acceleration as a service}
+\label{sec:sonic}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % R E S U L T S
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\clearpage
+\section{Performance and examples}
+\label{sec:results}
+\input{sections/results}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% S U M M A R Y
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\clearpage
+\section{Summary and Outlook}
+\label{sec:outlook}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Acknowledgements
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Acknowledgements}
+\label{sec:acknowledgements}
+
+We would like to thank ... \\
+XXXX are supported by Fermi Research Alliance, LLC under Contract No. DE-AC02-07CH11359 with the U.S. Department of Energy, Office of Science, Office of High Energy Physics.
+XXXX is supported by a Massachusetts Institute of Technology University grant. 
+
+\bibliographystyle{JHEP}
+\bibliography{aml}
+
+\end{document}
+
